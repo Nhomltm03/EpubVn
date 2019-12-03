@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Epub</string>
+    <string name="title_home">Home</string>
+    <string name="title_user">User</string>
+    <string name="title_categories">Categories</string>
+    <string name="tv_book_name">Name of Book</string>
+    <string name="tv_book_rate">1</string>
+    <string name="tv_book_author">Author</string>
+    <string name="tv_most_download">Most Download</string>
+    <string name="tv_recently_added">Recently Added</string>
+    <string name="tv_viral_book">Viral Book</string>
+    <string name="tv_random_book">Books You May Like</string>
+</resources>

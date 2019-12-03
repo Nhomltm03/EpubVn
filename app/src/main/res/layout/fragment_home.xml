@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:ignore="ScrollViewSize">
+    <TextView
+        android:textSize="@dimen/sp20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp5"
+        android:layout_marginStart="@dimen/dp10"
+        android:fontFamily="@font/arial"
+        android:textColor="@color/colorPrimary"
+        android:text="@string/tv_most_download"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_most_download"
+        android:layout_marginTop="@dimen/dp5"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp270" />
+    <TextView
+        android:textSize="@dimen/sp20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp5"
+        android:layout_marginStart="@dimen/dp10"
+        android:text="@string/tv_recently_added"
+        android:fontFamily="@font/arial"
+        android:textColor="@color/colorPrimary"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_recently_added"
+        android:layout_marginTop="@dimen/dp5"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp270" />
+    <TextView
+        android:textSize="@dimen/sp20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp5"
+        android:layout_marginStart="@dimen/dp10"
+        android:text="@string/tv_viral_book"
+        android:fontFamily="@font/arial"
+        android:textColor="@color/colorPrimary"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_viral_book"
+        android:layout_marginTop="@dimen/dp5"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp270" />
+    <TextView
+        android:textSize="@dimen/sp20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp5"
+        android:layout_marginStart="@dimen/dp10"
+        android:text="@string/tv_random_book"
+        android:fontFamily="@font/arial"
+        android:textColor="@color/colorPrimary"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_random_book"
+        android:layout_marginTop="@dimen/dp5"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp270"
+        android:layout_marginBottom="@dimen/dp50"/>
+
+</LinearLayout>
+
+
+</ScrollView>
