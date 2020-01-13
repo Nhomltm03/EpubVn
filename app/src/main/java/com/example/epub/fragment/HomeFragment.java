@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.epub.R;
 import com.example.epub.adapter.BookAdapter;
+import com.example.epub.adapter.OnItemClickListener;
 import com.example.epub.model.Book;
 import com.example.epub.model.DetailInformation;
 import com.example.epub.network.ApiClient;
@@ -128,6 +129,11 @@ public class HomeFragment extends Fragment {
                             viralBookAdapter = new BookAdapter(getActivity(),viralBookList);
                             rcRivalBook.setAdapter(viralBookAdapter);
                             viralBookAdapter.notifyDataSetChanged();
+                            viralBookAdapter.setItemOnclickListener((view, position, isLongClick) -> {
+                                viralBookAdapter.getItemCount();
+
+                                openDetailBookInformation();
+                            });
                         }
 
                     }
@@ -149,6 +155,12 @@ public class HomeFragment extends Fragment {
                             randomBookAdapter = new BookAdapter(getActivity(),randomBookList);
                             rcRandomBook.setAdapter(randomBookAdapter);
                             randomBookAdapter.notifyDataSetChanged();
+                            randomBookAdapter.setItemOnclickListener(new OnItemClickListener() {
+                                @Override
+                                public void onClick(View view, int position, boolean isLongClick) {
+
+                                }
+                            });
                         }
                     }
 
@@ -161,6 +173,10 @@ public class HomeFragment extends Fragment {
             default:
                 throw new IllegalStateException("Unexpected value: " + dataType);
         }
+
+    }
+
+    private void openDetailBookInformation() {
 
     }
 }

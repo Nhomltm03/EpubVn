@@ -58,13 +58,15 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
       Glide.with(context).load(model.getCover()).apply(requestOptions)
                            .listener(new RequestListener<Drawable>() {
                                @Override
-                               public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                               public boolean onLoadFailed(@Nullable GlideException e, Object model
+                                       , Target<Drawable> target, boolean isFirstResource) {
                                    holder.progressBar.setVisibility(View.GONE);
                                    return false;
                                }
 
                                @Override
-                               public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                               public boolean onResourceReady(Drawable resource, Object model
+                                       , Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
                                    holder.progressBar.setVisibility(View.GONE);
                                    return false;
                                }

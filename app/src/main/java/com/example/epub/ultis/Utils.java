@@ -1,8 +1,9 @@
 package com.example.epub.ultis;
 
-import android.annotation.SuppressLint;
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.ConnectivityManager;
 
 import org.jetbrains.annotations.NotNull;
 import org.ocpsoft.prettytime.PrettyTime;
@@ -47,23 +48,8 @@ public  class Utils {
         return isTime;
     }
 
-    public static String DateFormat(String oldStringDate){
-        String newDate;
-        SimpleDateFormat dateFormat = new SimpleDateFormat("E, d MMM yyyy", new Locale(getCountry()));
-        try {
-            @SuppressLint("SimpleDateFormat") Date date = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").parse(oldStringDate);
-            assert date != null;
-            newDate = dateFormat.format(date);
-        } catch (ParseException e) {
-            e.printStackTrace();
-            newDate = oldStringDate;
-        }
-
-        return newDate;
-    }
-
     @NotNull
-    static String getCountry(){
+    private static String getCountry(){
         Locale locale = Locale.getDefault();
         String country = locale.getCountry();
         return country.toLowerCase();
@@ -73,5 +59,15 @@ public  class Utils {
         Locale locale = Locale.getDefault();
         String country = locale.getLanguage();
         return country.toLowerCase();
+    }
+    public static boolean isAccessNetwork(Context context){
+        ConnectivityManager connectivityManager = (ConnectivityManager)
+                context.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        if (connectivityManager != null) {
+            return connectivityManager.getActiveNetworkInfo() != null
+                    && connectivityManager.getActiveNetworkInfo().isConnected();
+        }
+        return false;
     }
 }

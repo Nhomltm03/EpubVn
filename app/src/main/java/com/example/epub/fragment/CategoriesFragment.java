@@ -23,7 +23,7 @@ public class CategoriesFragment extends Fragment {
                 ViewModelProviders.of(this).get(DashboardViewModel.class);
         View root = inflater.inflate(R.layout.fragment_categories, container, false);
         final TextView textView = root.findViewById(R.id.text_dashboard);
-        dashboardViewModel.getText().observe(this, s -> textView.setText(s));
+        dashboardViewModel.getText().observe(this, textView::setText);
         return root;
     }
 }
