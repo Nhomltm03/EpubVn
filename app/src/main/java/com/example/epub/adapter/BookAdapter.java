@@ -32,7 +32,12 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
 
     private List<DetailInformation> detailInformationList;
     private Context context;
-    private OnItemClickListener onItemClickListener;
+    private OnClickItemListener onClickItemListener;
+
+
+    public void setOnClickItemListener(OnClickItemListener onClickItemListener) {
+        this.onClickItemListener = onClickItemListener;
+    }
 
     public BookAdapter(Context context, List<DetailInformation>detailInformationList){
         this.context = context;
@@ -43,19 +48,19 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
     @Override
     public BookViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.item_book,parent,false);
-        return new BookViewHolder(view, onItemClickListener);
+        return new BookViewHolder(view);
     }
 
     @SuppressLint({"CheckResult", "SetTextI18n"})
     @Override
     public void onBindViewHolder(@NonNull BookViewHolder holder, int position) {
-      DetailInformation model = detailInformationList.get(position);
-      RequestOptions requestOptions = new RequestOptions();
-      requestOptions.placeholder(Utils.getRandomDrawableColor());
-      requestOptions.error(Utils.getRandomDrawableColor());
-      requestOptions.diskCacheStrategy(DiskCacheStrategy.ALL);
-      requestOptions.centerCrop();
-      Glide.with(context).load(model.getCover()).apply(requestOptions)
+      DetailInformation model = this.detailInformationList.get(position);
+      RequestOptions mOptions = new RequestOptions();
+      mOptions.placeholder(Utils.getRandomDrawableColor());
+      mOptions.error(Utils.getRandomDrawableColor());
+      mOptions.diskCacheStrategy(DiskCacheStrategy.ALL);
+      mOptions.centerCrop();
+      Glide.with(this.context).load(model.getCover()).apply(mOptions)
                            .listener(new RequestListener<Drawable>() {
                                @Override
                                public boolean onLoadFailed(@Nullable GlideException e, Object model
@@ -77,40 +82,39 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
 
     }
 
+    public  interface OnClickItemListener{
+        void onItemClick(int position);
+    }
+
     @Override
     public int getItemCount() {
-        return detailInformationList.size();
+        return this.detailInformationList.size();
     }
-
-    public void setItemOnclickListener(OnItemClickListener onItemClickListener){
-        this.onItemClickListener = onItemClickListener;
-    }
-
 
     public class BookViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView tvBookName, tvAuthor, tvBookRate;
         ProgressBar progressBar;
         ImageView ivBookCover;
-        OnItemClickListener onItemClickListener;
 
-        BookViewHolder(@NonNull View itemView, OnItemClickListener mOnItemClickListener) {
+        BookViewHolder(@NonNull View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
-            tvBookName = itemView.findViewById(R.id.tv_book_name);
-            tvBookRate = itemView.findViewById(R.id.tv_book_rate);
-            tvAuthor = itemView.findViewById(R.id.tv_book_author);
-            ivBookCover = itemView.findViewById(R.id.iv_book_cover);
-            progressBar = itemView.findViewById(R.id.progress_load_image);
-            tvBookName.setSelected(true);
-            tvAuthor.setSelected(true);
-            this.onItemClickListener = mOnItemClickListener;
+            this.initViews(itemView);
+        }
+
+        private void initViews(@NonNull View itemView) {
+            this.tvBookName = itemView.findViewById(R.id.tv_book_name);
+            this.tvBookRate = itemView.findViewById(R.id.tv_book_rate);
+            this.tvAuthor = itemView.findViewById(R.id.tv_book_author);
+            this.ivBookCover = itemView.findViewById(R.id.iv_book_cover);
+            this.progressBar = itemView.findViewById(R.id.progress_load_image);
+            this.tvBookName.setSelected(true);
+            this.tvAuthor.setSelected(true);
         }
 
         @Override
         public void onClick(View view) {
-
-            onItemClickListener.onClick(view,getAdapterPosition(),false);
-
+            onClickItemListener.onItemClick(getAdapterPosition());
         }
     }
 }

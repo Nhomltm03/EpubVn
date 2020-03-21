@@ -27,7 +27,7 @@
             android:id="@+id/iv_no_network"
             android:layout_width="@dimen/dp75"
             android:layout_height="@dimen/dp75"
-            android:src="@mipmap/dinasorus"
+            android:src="@drawable/ic_refresh"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -37,7 +37,7 @@
 
         <TextView
             android:layout_width="wrap_content"
-            android:textSize="22sp"
+            android:textSize="20sp"
             android:textColor="@color/color_black"
             android:text="@string/alert_no_network"
             android:layout_height="wrap_content"
@@ -46,6 +46,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.47000003" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
     <com.google.android.material.bottomnavigation.BottomNavigationView

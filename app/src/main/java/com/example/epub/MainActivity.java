@@ -1,10 +1,16 @@
 package com.example.epub;
 
 import android.annotation.SuppressLint;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -53,38 +59,36 @@ public class MainActivity extends AppCompatActivity {
         navView = findViewById(R.id.bn_home_navigation);
         vpMain = findViewById(R.id.vp_main);
         noNetworkLayout = findViewById(R.id.fl_no_network);
-        if (Utils.isAccessNetwork(MainActivity.this)) {
-            noNetworkLayout.setVisibility(View.GONE);
-            navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-            vpMain.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        noNetworkLayout.setVisibility(View.GONE);
+        navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        vpMain.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
-                @Override
-                public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+                if (bnHomeNavigation != null) {
+                    bnHomeNavigation.setChecked(false);
+                } else {
+                    navView.getMenu().getItem(0).setChecked(false);
                 }
+                navView.getMenu().getItem(position).setChecked(true);
+                bnHomeNavigation = navView.getMenu().getItem(position);
 
-                @Override
-                public void onPageSelected(int position) {
+            }
 
-                    if (bnHomeNavigation != null) {
-                        bnHomeNavigation.setChecked(false);
-                    } else {
-                        navView.getMenu().getItem(0).setChecked(false);
-                    }
-                    navView.getMenu().getItem(position).setChecked(true);
-                    bnHomeNavigation = navView.getMenu().getItem(position);
+            @Override
+            public void onPageScrollStateChanged(int state) {
+            }
 
-                }
-                @Override
-                public void onPageScrollStateChanged(int state) {
-                }
+        });
+        vpMain.setOnTouchListener((view, motionEvent) -> false);
+        vpMain.setClickable(false);
+        initViewPager(vpMain);
 
-            });
-            vpMain.setOnTouchListener((view, motionEvent) -> false);
-            vpMain.setClickable(false);
-            initViewPager(vpMain);
-        } else {
-            noNetworkLayout.setVisibility(View.VISIBLE);
-        }
     }
 
     @Override
@@ -92,11 +96,14 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         if (Utils.isAccessNetwork(MainActivity.this)) {
             noNetworkLayout.setVisibility(View.GONE);
-
+            vpMain.setVisibility(View.VISIBLE);
         } else {
+            vpMain.setVisibility(View.GONE);
             noNetworkLayout.setVisibility(View.VISIBLE);
+
         }
     }
+
 
     private void initViewPager(ViewPager vpMain) {
         SectionsPagerAdapter adapter = new SectionsPagerAdapter(getSupportFragmentManager());

@@ -15,12 +15,12 @@ import java.lang.reflect.Field;
 public class LockSwipeViewPager extends ViewPager {
     public LockSwipeViewPager(@NonNull Context context) {
         super(context);
-        setMyScroller();
+        this.setMyScroller();
     }
 
     public LockSwipeViewPager(Context context, AttributeSet attrs) {
         super(context, attrs);
-        setMyScroller();
+        this.setMyScroller();
     }
 
 
@@ -46,7 +46,7 @@ public class LockSwipeViewPager extends ViewPager {
         }
     }
 
-    public class MyScroller extends Scroller {
+    public static class MyScroller extends Scroller {
         MyScroller(Context context) {
             super(context, new DecelerateInterpolator());
         }

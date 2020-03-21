@@ -20,15 +20,15 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     @NotNull
     @Override
     public Fragment getItem(int position) {
-        return mFragmentList.get(position);
+        return this.mFragmentList.get(position);
     }
 
     @Override
     public int getCount() {
-        return mFragmentList.size();
+        return this.mFragmentList.size();
     }
 
     public void addFragment(Fragment fragment) {
-        mFragmentList.add(fragment);
+        this.mFragmentList.add(fragment);
     }
 }
