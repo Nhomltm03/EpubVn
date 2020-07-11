@@ -30,10 +30,9 @@ import java.util.List;
 
 public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder> {
 
-    private List<DetailInformation> detailInformationList;
     private Context context;
     private OnClickItemListener onClickItemListener;
-
+    private List<DetailInformation> detailInformationList;
 
     public void setOnClickItemListener(OnClickItemListener onClickItemListener) {
         this.onClickItemListener = onClickItemListener;

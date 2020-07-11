@@ -34,11 +34,13 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class HomeFragment extends Fragment {
+
     private static final String PERIOD_QUERY = "Daily";
     private static final int DATA_TYPE_MOST_DOWNLOAD = 1;
     private static final int DATA_TYPE_RECENTLY_ADDED = 2;
     private static final int DATA_TYPE_VIRAL_BOOK = 3;
     private static final int DATA_TYPE_RANDOM_BOOK = 4;
+
     @BindView(R.id.iv_back)
     ImageView ivBack;
 
@@ -99,8 +101,8 @@ public class HomeFragment extends Fragment {
     }
 
     private void configRecycleView(RecyclerView recyclerView, ViewGroup viewGroup) {
-
-        recyclerView.setLayoutManager(new LinearLayoutManager(viewGroup.getContext(), LinearLayoutManager.HORIZONTAL, false));
+        recyclerView.setLayoutManager(new LinearLayoutManager(viewGroup.getContext(),
+                LinearLayoutManager.HORIZONTAL, false));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setNestedScrollingEnabled(false);
     }
@@ -148,7 +150,6 @@ public class HomeFragment extends Fragment {
             }
         });
     }
-
 
     private void loadDataAPI(int dataType) {
 
@@ -225,7 +226,8 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void onResponse(Call<Book> call, Response<Book> response) {
 
-                        if (response.body() != null && response.isSuccessful() && response.body().getData() != null) {
+                        if (response.body() != null && response.isSuccessful()
+                                && response.body().getData() != null) {
                             randomBookList = response.body().getData();
                             randomBookAdapter = new BookAdapter(getActivity(), randomBookList);
                             rvRandomBook.setAdapter(randomBookAdapter);
@@ -243,9 +245,7 @@ public class HomeFragment extends Fragment {
             default:
                 throw new IllegalStateException("Unexpected value: " + dataType);
         }
-
     }
-
 
     @OnClick({R.id.iv_back, R.id.ed_find_bar, R.id.iv_user_profile})
     public void onViewClicked(View view) {

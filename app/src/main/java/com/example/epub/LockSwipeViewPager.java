@@ -13,6 +13,7 @@ import androidx.viewpager.widget.ViewPager;
 import java.lang.reflect.Field;
 
 public class LockSwipeViewPager extends ViewPager {
+
     public LockSwipeViewPager(@NonNull Context context) {
         super(context);
         this.setMyScroller();
@@ -22,7 +23,6 @@ public class LockSwipeViewPager extends ViewPager {
         super(context, attrs);
         this.setMyScroller();
     }
-
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -40,7 +40,7 @@ public class LockSwipeViewPager extends ViewPager {
             Class<?> viewpager = ViewPager.class;
             Field scroller = viewpager.getDeclaredField("mScroller");
             scroller.setAccessible(true);
-            scroller.set(this, new MyScroller(getContext()));
+            scroller.set(this, new MyScroller(this.getContext()));
         } catch (Exception e) {
             e.printStackTrace();
         }

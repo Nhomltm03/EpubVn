@@ -1,20 +1,13 @@
 package com.example.epub;
 
 import android.annotation.SuppressLint;
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.epub.adapter.SectionsPagerAdapter;
@@ -31,37 +24,41 @@ public class MainActivity extends AppCompatActivity {
     private FrameLayout noNetworkLayout;
     private BottomNavigationView navView;
 
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+    private BottomNavigationView.OnNavigationItemSelectedListener mItemSelectedListener =
+            new BottomNavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-            switch (item.getItemId()) {
-                case R.id.bn_item_home:
-                    vpMain.setCurrentItem(0);
-                    break;
-                case R.id.bn_item_categories:
-                    vpMain.setCurrentItem(1);
-                    break;
-                case R.id.bn_item_user:
-                    vpMain.setCurrentItem(2);
-                    break;
-            }
-            return false;
-        }
-    };
+                    switch (item.getItemId()) {
+                        case R.id.bn_item_home:
+                            vpMain.setCurrentItem(0);
+                            break;
+                        case R.id.bn_item_categories:
+                            vpMain.setCurrentItem(1);
+                            break;
+                        case R.id.bn_item_user:
+                            vpMain.setCurrentItem(2);
+                            break;
+                    }
+                    return false;
+                }
+            };
 
-    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        navView = findViewById(R.id.bn_home_navigation);
-        vpMain = findViewById(R.id.vp_main);
-        noNetworkLayout = findViewById(R.id.fl_no_network);
-        noNetworkLayout.setVisibility(View.GONE);
-        navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        vpMain.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        this.init();
+    }
+
+    private void init() {
+        this.initView();
+        this.initPager();
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    private void initPager() {
+        this.navView.setOnNavigationItemSelectedListener(mItemSelectedListener);
+        this.vpMain.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -85,28 +82,33 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
-        vpMain.setOnTouchListener((view, motionEvent) -> false);
-        vpMain.setClickable(false);
-        initViewPager(vpMain);
+        this.vpMain.setOnTouchListener((view, motionEvent) -> false);
+        this.vpMain.setClickable(false);
+        this.initItem(this.vpMain);
+    }
 
+    private void initView() {
+        this.setContentView(R.layout.activity_main);
+        this.navView = this.findViewById(R.id.bn_home_navigation);
+        this.vpMain = this.findViewById(R.id.vp_main);
+        this.noNetworkLayout = this.findViewById(R.id.fl_no_network);
+        this.noNetworkLayout.setVisibility(View.GONE);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         if (Utils.isAccessNetwork(MainActivity.this)) {
-            noNetworkLayout.setVisibility(View.GONE);
-            vpMain.setVisibility(View.VISIBLE);
+            this.noNetworkLayout.setVisibility(View.GONE);
+            this.vpMain.setVisibility(View.VISIBLE);
         } else {
-            vpMain.setVisibility(View.GONE);
-            noNetworkLayout.setVisibility(View.VISIBLE);
-
+            this.vpMain.setVisibility(View.GONE);
+            this.noNetworkLayout.setVisibility(View.VISIBLE);
         }
     }
 
-
-    private void initViewPager(ViewPager vpMain) {
-        SectionsPagerAdapter adapter = new SectionsPagerAdapter(getSupportFragmentManager());
+    private void initItem(ViewPager vpMain) {
+        SectionsPagerAdapter adapter = new SectionsPagerAdapter(this.getSupportFragmentManager());
         HomeFragment homeFragment = new HomeFragment();
         CategoriesFragment categoriesFragment = new CategoriesFragment();
         UserFragment userFragment = new UserFragment();

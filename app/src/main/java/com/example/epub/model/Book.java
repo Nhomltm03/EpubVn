@@ -1,18 +1,22 @@
 package com.example.epub.model;
-import java.util.List;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class Book {
+
     @SerializedName("result")
     @Expose
     private Boolean result;
+
     @SerializedName("data")
     @Expose
     private List<DetailInformation> data = null;
 
     public Boolean getResult() {
-        return result;
+        return this.result;
     }
 
     public void setResult(Boolean result) {
@@ -20,7 +24,7 @@ public class Book {
     }
 
     public List<DetailInformation> getData() {
-        return data;
+        return this.data;
     }
 
     public void setData(List<DetailInformation> data) {

@@ -9,93 +9,121 @@ public class DetailInformation {
     @SerializedName("tag")
     @Expose
     private List<String> tag = null;
+
     @SerializedName("is_copyright")
     @Expose
     private Boolean isCopyright;
+
     @SerializedName("price")
     @Expose
     private String price;
+
     @SerializedName("price_unit")
     @Expose
     private String priceUnit;
+
     @SerializedName("items_left")
     @Expose
     private Integer itemsLeft;
+
     @SerializedName("averageRating")
     @Expose
     private String averageRating;
+
     @SerializedName("ratingNumbers")
     @Expose
     private Integer ratingNumbers;
+
     @SerializedName("view_level")
     @Expose
     private Integer viewLevel;
+
     @SerializedName("download_level")
     @Expose
     private Integer downloadLevel;
+
     @SerializedName("anonymous_upload")
     @Expose
     private Boolean anonymousUpload;
+
     @SerializedName("enable")
     @Expose
     private Boolean enable;
+
     @SerializedName("_id")
     @Expose
     private String id;
+
     @SerializedName("name")
     @Expose
     private String name;
+
     @SerializedName("author")
     @Expose
     private String author;
+
     @SerializedName("category")
     @Expose
     private String category;
+
     @SerializedName("language")
     @Expose
     private String language;
+
     @SerializedName("cover")
     @Expose
     private String cover;
+
     @SerializedName("normalized_name")
     @Expose
     private String normalizedName;
+
     @SerializedName("normalized_author")
     @Expose
     private String normalizedAuthor;
+
     @SerializedName("slug")
     @Expose
     private String slug;
+
     @SerializedName("create_by")
     @Expose
     private String createBy;
+
     @SerializedName("update_by")
     @Expose
     private String updateBy;
+
     @SerializedName("create_time")
     @Expose
     private String createTime;
+
     @SerializedName("update_time")
     @Expose
     private String updateTime;
+
     @SerializedName("__v")
     @Expose
     private Integer v;
+
     @SerializedName("view_count")
     @Expose
     private Integer viewCount;
+
     @SerializedName("download_count")
     @Expose
     private Integer downloadCount;
+
     @SerializedName("gdrive_link")
     @Expose
     private String gdriveLink;
+
     @SerializedName("original_cover")
     @Expose
     private String originalCover;
 
     public List<String> getTag() {
-        return tag;
+        return this.tag;
     }
 
     public void setTag(List<String> tag) {
@@ -103,7 +131,7 @@ public class DetailInformation {
     }
 
     public Boolean getIsCopyright() {
-        return isCopyright;
+        return this.isCopyright;
     }
 
     public void setIsCopyright(Boolean isCopyright) {
@@ -119,7 +147,7 @@ public class DetailInformation {
     }
 
     public String getPriceUnit() {
-        return priceUnit;
+        return this.priceUnit;
     }
 
     public void setPriceUnit(String priceUnit) {
@@ -127,7 +155,7 @@ public class DetailInformation {
     }
 
     public Integer getItemsLeft() {
-        return itemsLeft;
+        return this.itemsLeft;
     }
 
     public void setItemsLeft(Integer itemsLeft) {
@@ -135,7 +163,7 @@ public class DetailInformation {
     }
 
     public String getAverageRating() {
-        return averageRating;
+        return this.averageRating;
     }
 
     public void setAverageRating(String averageRating) {
@@ -143,7 +171,7 @@ public class DetailInformation {
     }
 
     public Integer getRatingNumbers() {
-        return ratingNumbers;
+        return this.ratingNumbers;
     }
 
     public void setRatingNumbers(Integer ratingNumbers) {
@@ -151,7 +179,7 @@ public class DetailInformation {
     }
 
     public Integer getViewLevel() {
-        return viewLevel;
+        return this.viewLevel;
     }
 
     public void setViewLevel(Integer viewLevel) {
@@ -159,7 +187,7 @@ public class DetailInformation {
     }
 
     public Integer getDownloadLevel() {
-        return downloadLevel;
+        return this.downloadLevel;
     }
 
     public void setDownloadLevel(Integer downloadLevel) {
@@ -167,7 +195,7 @@ public class DetailInformation {
     }
 
     public Boolean getAnonymousUpload() {
-        return anonymousUpload;
+        return this.anonymousUpload;
     }
 
     public void setAnonymousUpload(Boolean anonymousUpload) {
@@ -175,7 +203,7 @@ public class DetailInformation {
     }
 
     public Boolean getEnable() {
-        return enable;
+        return this.enable;
     }
 
     public void setEnable(Boolean enable) {
@@ -199,7 +227,7 @@ public class DetailInformation {
     }
 
     public String getAuthor() {
-        return author;
+        return this.author;
     }
 
     public void setAuthor(String author) {
@@ -215,7 +243,7 @@ public class DetailInformation {
     }
 
     public String getLanguage() {
-        return language;
+        return this.language;
     }
 
     public void setLanguage(String language) {
@@ -231,7 +259,7 @@ public class DetailInformation {
     }
 
     public String getNormalizedName() {
-        return normalizedName;
+        return this.normalizedName;
     }
 
     public void setNormalizedName(String normalizedName) {
@@ -239,7 +267,7 @@ public class DetailInformation {
     }
 
     public String getNormalizedAuthor() {
-        return normalizedAuthor;
+        return this.normalizedAuthor;
     }
 
     public void setNormalizedAuthor(String normalizedAuthor) {
@@ -303,7 +331,7 @@ public class DetailInformation {
     }
 
     public Integer getDownloadCount() {
-        return downloadCount;
+        return this.downloadCount;
     }
 
     public void setDownloadCount(Integer downloadCount) {
@@ -311,7 +339,7 @@ public class DetailInformation {
     }
 
     public String getGdriveLink() {
-        return gdriveLink;
+        return this.gdriveLink;
     }
 
     public void setGdriveLink(String gdriveLink) {
